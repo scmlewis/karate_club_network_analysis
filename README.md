@@ -21,30 +21,34 @@ If you are managing a club or customer community, which members most influence c
 - 34 nodes and 78 edges representing social ties within the club.
 - Ground-truth faction labels are embedded in node attributes (`club`).
 
+## Key Figures (Summary)
+- **Dataset:** 34 nodes, 78 edges, average degree 4.59, density 0.139; faction split 17 / 17 (Mr. Hi vs Officer).
+- **Centrality:** degree and betweenness correlation r ~= 0.915; top brokerage (lowest constraint) nodes: 0, 33.
+- **Community detection:** 2 groups; modularity ~= 0.400; NMI ~= 0.677; best-label accuracy ~= 0.94.
+- **Structural comparison:** faction subgraphs show distinct clustering and path-length profiles vs full network.
+- **Robustness:** first-step LCC 0.97 (random) vs 0.79 (targeted); targeted removals fragment faster.
+- **Figures:** centrality correlation heatmap, community-colored network layout, degree vs betweenness scatter, resilience/path-length curves.
+
 ## Analysis Flow (Notebook Phases)
 1. **Data Loading and Exploration**
    - Computes core network stats (nodes, edges, density, average degree).
-   - Business interpretation: sets the baseline for operational impact.
+   - Establishes the baseline size, sparsity, and faction balance.
 
 2. **Centrality Analysis**
    - Measures degree, betweenness, closeness, eigenvector centrality, and PageRank.
    - Produces a top-5 influencer table per metric.
    - Checks correlation between centrality measures and identifies brokerage via Burt's constraint.
-   - Business interpretation: identifies efficient influence levers.
 
 3. **Community Detection**
    - Uses greedy modularity to detect communities.
    - Evaluates modularity, NMI, and accuracy against true faction labels.
-   - Business interpretation: network structure can reveal group splits to guide communication.
 
 4. **Network Metrics and Subgraph Comparison**
    - Compares full network to faction subgraphs on clustering, path length, and diameter.
-   - Business interpretation: cohesion differences imply different engagement strategies.
 
 5. **Robustness Simulation**
    - Simulates random failures and targeted removals.
    - Tracks largest component fraction, average shortest path, and number of components.
-   - Business interpretation: targeted removals fragment the network faster.
 
 6. **Visualization**
    - Centrality correlation heatmap.
@@ -60,7 +64,6 @@ If you are managing a club or customer community, which members most influence c
 
 ## Project Structure
 - `karate_analysis.ipynb` - Main analysis notebook.
-- `plan.md` - Planning notes.
 
 ## How To Run
 1. Open `karate_analysis.ipynb` in VS Code or Jupyter.
